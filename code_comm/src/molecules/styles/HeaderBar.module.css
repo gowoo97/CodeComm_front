@@ -1,0 +1,11 @@
+
+.container {
+    width:1000px;
+    display: flex;
+   
+}
+
+
+.right{
+    margin-left: auto;
+}
