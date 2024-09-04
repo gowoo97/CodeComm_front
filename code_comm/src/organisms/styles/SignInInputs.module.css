@@ -1,0 +1,28 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+    
+}
+
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+
+.buttonContainer > * {
+    margin:  10px;
+}
+
+
+
+.boxContainer{
+    display: flex;
+    justify-content: center;
+}
+

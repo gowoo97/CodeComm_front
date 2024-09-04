@@ -1,0 +1,10 @@
+.container{
+    border: 1px solid black;
+    width:477px;
+    height: 599px;
+}
+
+
+.title{
+    text-align: center;
+}
