@@ -3,3 +3,11 @@
     justify-content: center;
     margin: 200px;
 }
+
+
+
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
