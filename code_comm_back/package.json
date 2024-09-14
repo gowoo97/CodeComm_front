@@ -1,0 +1,15 @@
+{
+  "name": "code_comm_back",
+  "version": "1.0.0",
+  "description": "code community for developer",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "gowoo97",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
