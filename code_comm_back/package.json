@@ -10,6 +10,7 @@
   "author": "gowoo97",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "mysql2": "^3.11.2"
   }
 }
