@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 
   args:{
-    label:"검색"
+    label:"검색",
+    placeholder:"검색어"
   }
 };
