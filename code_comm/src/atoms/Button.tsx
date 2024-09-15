@@ -5,12 +5,13 @@ interface buttonProps {
     width:string,
     height:string,
     backgroundColor:string,
-    color:string
+    color:string,
+    onClick?:()=>void
 }
 
-const Button:React.FC<buttonProps> = ({label , width,height,backgroundColor,color})=> {
+const Button:React.FC<buttonProps> = ({label , width,height,backgroundColor,color,onClick})=> {
     return (
-        <button style={{width,height,backgroundColor,color,borderRadius:"10px"}}>
+        <button style={{width,height,backgroundColor,color,borderRadius:"10px"}} onClick={onClick}>
             {label}
         </button>
     );
