@@ -17,5 +17,9 @@ module.exports = {
             if (err) console.error("mysql connection error : "+ err);
             else console.log("mysql is connected successfully!");
         })
+    },
+    end: function(conn){
+        console.log("커넥션 종료");
+        conn.end();
     }
 }

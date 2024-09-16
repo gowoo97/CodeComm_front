@@ -15,6 +15,7 @@ export const Default: Story = {
   args:{
     label:"검색",
     placeholder:"검색어",
-    onChange:()=>{}
+    onChange:()=>{},
+    onClick:()=>{}
   }
 };
