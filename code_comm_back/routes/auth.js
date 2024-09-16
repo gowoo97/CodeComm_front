@@ -1,25 +1,26 @@
 
 
 const express = require("express");
-const db = require("../config/mysql.js");
+const authService = require("../service/AuthService.js");
 
 const router = express.Router();
 
 
-router.post('/signup', function(req, res){
-    const conn =db.init();
-    const sql = "insert into MEMBER (email,pw,nickname) values(?,?,?)";
+router.post('/signup', function(req, res){ 
     const body = req.body;
-
     const params = [body.email,body.password,body.nickname];
-    conn.query(sql, params ,function(err,result){
-        conn.end();
-        if(err) console.log("query is not excuted: "+ err);
-        else{
+    authService.signup(params);
+})
 
-            return res.sendStatus(200);
-        }
-    })
+
+router.post('/verify', function(req,res){
+    const body = req.body;
+    
+    const code = authService.getVerifyCode(body.to);
+
+    console.log(code);
+
+    res.sendStatus(200);
 })
 
 
