@@ -13,6 +13,9 @@ redisClient.on('connect', () => {
 })
 
 redisClient.connect().then();
+
+redisClient.auth(1234);
+
 const redisCli = redisClient.v4;
 
 const transporter = nodemailer.createTransport({
@@ -33,6 +36,7 @@ class AuthService{
 
     async getVerifyCode(to){
         const verificationCode = Math.floor(1000 + Math.random() * 9000);
+        const uuid = uuidv4();
         const mailOptions = {
             from: 'gowoo97@gmail.com',
             to,
@@ -42,9 +46,12 @@ class AuthService{
 
         try{
             await transporter.sendMail(mailOptions);
+            
+            redisClient.set(uuid,verificationCode.toString());
+
             return {
                code:verificationCode.toString(),
-               uuid:uuidv4()
+               uuid:uuid
             }
         }catch(error){
             console.error('이메일 전송 오류:', error);
