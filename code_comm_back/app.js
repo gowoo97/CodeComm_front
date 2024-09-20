@@ -1,9 +1,8 @@
 const express = require('express');
-const db = require("./config/mysql.js");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const conn = db.init();
+
 
 const authRouter = require('./routes/auth');
 

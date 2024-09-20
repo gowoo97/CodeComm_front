@@ -59,6 +59,19 @@ class AuthService{
         }
     }
 
+    async verify(code, uuid) {
+        let redisCode = "";
+        await new Promise((resolve) => {
+            redisClient.get(uuid, (err, reply) => {
+                redisCode = reply;
+                resolve();
+            });
+        });
+    
+        console.log(redisCode);
+        return redisCode == code;
+    }
+
 }
 
 

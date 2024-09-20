@@ -26,7 +26,7 @@ const SignupInputs:React.FC = ()=> {
     }
 
     const getCode = async function(){
-        axiosInstance.post("/auth/verify", {
+        axiosInstance.post("/auth/verifyCode", {
             to:email
         })
         .then((res)=> {
