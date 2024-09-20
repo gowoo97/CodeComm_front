@@ -1,6 +1,6 @@
 
 const memberRepository = require("../repository/memberRepository");
-
+const {v4: uuidv4} = require("uuid");
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
     port:587,
     auth:{
         user:'gowoo97@gmail.com',
-        pass: ''
+        pass: 'ugog kjoy ilvc hwkg'
     }
 });
 
@@ -30,7 +30,10 @@ class AuthService{
 
         try{
             await transporter.sendMail(mailOptions);
-            return verificationCode.toString();
+            return {
+               code:verificationCode.toString(),
+               uuid:uuidv4()
+            }
         }catch(error){
             console.error('이메일 전송 오류:', error);
             throw new Error('이메일 전송에 실패했습니다.');

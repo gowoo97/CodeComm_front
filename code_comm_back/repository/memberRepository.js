@@ -2,7 +2,7 @@ const db = require("../config/mysql.js");
 
 class MemberRepository{
 
-    async signup(){
+    async signup(params){
         const conn =await db.init();
         const sql = "insert into MEMBER (email,pw,nickname) values(?,?,?)";
         
@@ -10,7 +10,7 @@ class MemberRepository{
             conn.end();
             if(err) console.log("query is not excuted: "+ err);
             else{
-                return res.sendStatus(200);
+                return result;
             }
         });
     }

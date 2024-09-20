@@ -13,14 +13,14 @@ router.post('/signup', function(req, res){
 })
 
 
-router.post('/verify', function(req,res){
+router.post('/verify', async function(req,res){
     const body = req.body;
     
-    const code = authService.getVerifyCode(body.to);
+    const code = await authService.getVerifyCode(body.to);
 
     console.log(code);
 
-    res.sendStatus(200);
+    res.status(200).send({uuid: code.uuid});
 })
 
 
