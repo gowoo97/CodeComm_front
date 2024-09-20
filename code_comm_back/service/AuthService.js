@@ -2,6 +2,18 @@
 const memberRepository = require("../repository/memberRepository");
 const {v4: uuidv4} = require("uuid");
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+const redis = require('redis');
+
+dotenv.config();
+
+const redisClient = redis.createClient({legacyMode: true});
+redisClient.on('connect', () => {
+    console.info('RedisConnected!')
+})
+
+redisClient.connect().then();
+const redisCli = redisClient.v4;
 
 const transporter = nodemailer.createTransport({
     host:"smtp.gmail.com",
