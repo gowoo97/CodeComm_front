@@ -18,6 +18,10 @@ app.get('/', (req,res) => {
     res.send('Hello, Express')
 })
 
+app.use((err, req, res, next) => {
+    console.error('서버 오류 발생:', err);
+    res.status(500).json({ message: '서버 오류가 발생했습니다.' });
+});
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중')

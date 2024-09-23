@@ -6,10 +6,18 @@ const authService = require("../service/AuthService.js");
 const router = express.Router();
 
 
-router.post('/signup', function(req, res){ 
-    const body = req.body;
+router.post('/signup',async function(req, res,next){ 
+    try{
+        const body = req.body;
     const params = [body.email,body.password,body.nickname];
     authService.signup(params);
+    res.status(200);
+    }catch(err){
+        console.log("rrrrr"+err);
+        next(err);
+        res.status(404).send("동일한 이메일 존재");
+    }
+    
 })
 
 

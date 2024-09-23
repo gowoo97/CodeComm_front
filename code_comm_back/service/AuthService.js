@@ -31,7 +31,13 @@ class AuthService{
 
 
     async signup(params){
-        await memberRepository.signup(params);
+        try{
+            return await memberRepository.signup(params);
+        }catch(err){
+            console.log("eqrwqrqrqrq");
+            throw {status: 500 , message: '회원가입 오류'};
+        }
+        
     }
 
     async getVerifyCode(to){
