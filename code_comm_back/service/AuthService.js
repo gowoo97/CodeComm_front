@@ -30,23 +30,25 @@ const transporter = nodemailer.createTransport({
 class AuthService{
 
 
-    async signup(params){
+     signup(params){
         try{
-            return await memberRepository.signup(params);
+            const rst= memberRepository.signup(params);
+            //console.log(rst);
+            return rst;
         }catch(err){
-            console.log("eqrwqrqrqrq");
-            throw {status: 500 , message: '회원가입 오류'};
-        }
-        
+            
+            throw err;
+            
+        }  
     }
 
     async getVerifyCode(to){
         const verificationCode = Math.floor(1000 + Math.random() * 9000);
         const uuid = uuidv4();
         const mailOptions = {
-            from: 'gowoo97@gmail.com',
+            from: '',
             to,
-            subject: "인증 코드가 도착했습니다.",
+            subject: "",
             text: verificationCode.toString()
         };
 

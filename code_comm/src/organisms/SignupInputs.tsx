@@ -16,11 +16,11 @@ const SignupInputs:React.FC = ()=> {
 
     const dispatch = useDispatch();
     const { email,code,password, passwordConfirm, nickname} = useSelector((state:RootState) => state.signup);
-
+    const timeout = 5000;
     const signup =async function(){
         try{
             const response =await axiosInstance.post("/auth/signup", {
-                email,code,password,passwordConfirm,nickname
+                email,code,password,passwordConfirm,nickname,timeout
             });
             console.log(response);
             alert("회원가입 성공!");

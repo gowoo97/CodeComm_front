@@ -2,32 +2,19 @@ const db = require("../config/mysql.js");
 
 class MemberRepository{
 
-    async signup(params){
+     signup(params){
         
         const sql = "insert into MEMBER (email,pw,nickname) values(?,?,?)";
-        const conn =await db.init();
-        try{
-            
-            // conn.query(sql, params ,function(err,result){
-            
-            //     if(err){
-            //         console.log("query is not excuted: "+ err);
-            //         throw new Error('member');
-            //     }
-            //     else{
-            //         return result;
-            //     }
-            // });
-
-            const [result] = await conn.execute(sql,params);
-            return result;
-        }catch(err){
-            console.log('fffff');
-            return err;
-        }finally{
-            await conn.end();
-        }
-
+        const conn =db.init();
+       
+            return conn.execute(sql,params,(err,rows) => {
+                if(err){
+                    throw err;
+                    
+                }
+            });
+        
+        conn.end();
        
     }
 
