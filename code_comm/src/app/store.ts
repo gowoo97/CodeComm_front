@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import signupReducer from '../slices/signupSlice'
+import signinReducer from '../slices/signinSlice';
 
 export const store = configureStore({
     reducer:{
-        signup: signupReducer 
+        signup: signupReducer,
+        signin: signinReducer
     },
 })
 
