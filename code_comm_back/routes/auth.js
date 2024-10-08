@@ -2,7 +2,7 @@
 
 const express = require("express");
 const authService = require("../service/AuthService.js");
-
+const tokenService = require("../service/TokenService.js");
 const router = express.Router();
 
 
@@ -42,5 +42,12 @@ router.post('/verify',async function(req,res){
 })
 
 
+router.post('/signin', function(req,res){
+    const body = req.body;
+
+    const token = tokenService.generateToken({data2:'mannnnnnnnnn'});
+    console.log(token);
+    res.status(200).send(token);
+});
 
 module.exports = router;
