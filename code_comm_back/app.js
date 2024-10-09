@@ -23,19 +23,27 @@ app.get('/', (req,res) => {
 
 
 app.use((err, req, res, next) => {
-    console.error('서버 오류 발생:', err);
-    res.status(500).json({ message: '서버 오류가 발생했습니다.' });
-    next(err);
+    //console.error('서버 오류 발생:', err);
+    res.status(400).send('서버 오류!');
+    return;
 });
 
 // process.on('unhandleRejection', (err, result) => {
+//     console.log('un');
 // 	err.message, err.code, err.stack
 // })
 
 // process.on('uncaughtException', (err, result) => {
+//     console.log('unc');
 // 	err.message, err.code, err.stack
 // })
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), (err) => {
+
+    if(err){
+        console.log(err);
+        return;
+    }
+
     console.log(app.get('port'), '번 포트에서 대기 중')
 })

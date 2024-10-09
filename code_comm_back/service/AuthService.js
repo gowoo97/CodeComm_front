@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
     port:587,
     auth:{
         user:'gowoo97@gmail.com',
-        pass: 'ugog kjoy ilvc hwkg'
+        pass: 'uviy ivbk dqvl cnvw'
     }
 });
 
@@ -31,15 +31,9 @@ class AuthService{
 
 
      signup(params){
-        try{
             const rst= memberRepository.signup(params);
-            //console.log(rst);
-            return rst;
-        }catch(err){
-            
-            throw err;
-            
-        }  
+           // console.log(typeof(rst));
+            return rst;  
     }
 
     async getVerifyCode(to){

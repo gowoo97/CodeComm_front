@@ -1,22 +1,31 @@
 
-
+const db = require('../config/mysql.js');
 const express = require("express");
-const authService = require("../service/AuthService.js");
-const tokenService = require("../service/TokenService.js");
 const router = express.Router();
 
 
-router.post('/signup',function(req, res,next){ 
+router.post('/signup', function(req, res,next){ 
     try{
     const body = req.body;
     const params = [body.email,body.password,body.nickname];
-    const rst =  authService.signup(params);
     
+    const conn = db.init();
+    db.connect(conn);
+    console.log('555555 ');
+   const rst = conn.query("insert into MEMBER (email,pw,nickname) values(?,?,?)",params,(err,rows)=>{
+        if(err){
+            console.log('sdfsfsdfs');
+           
+            return res.status(404).send('eeeeeeee');;
+        }
+        else{
+            return res.status(200).send('ok');
+        }
+    });
 
-    
-    res.status(200);
-    }catch(err){
-        
+     
+    }catch(err){  
+        console.log('catch');  
         res.status(404).send("duplicated email address");
     }
     
