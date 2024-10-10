@@ -1,6 +1,8 @@
 
 const db = require('../config/mysql.js');
 const express = require("express");
+const authService = require('../service/AuthService.js');
+const tokenService = require('../service/TokenService.js');
 const router = express.Router();
 
 
@@ -27,6 +29,8 @@ router.post('/signup', function(req, res,next){
     }catch(err){  
         console.log('catch');  
         res.status(404).send("duplicated email address");
+    }finally{
+        conn.end();
     }
     
 })
@@ -53,10 +57,27 @@ router.post('/verify',async function(req,res){
 
 router.post('/signin', function(req,res){
     const body = req.body;
+    const conn = db.init();
+    db.connect(conn);
+    const sql = "SELECT * FROM MEMBER WHERE email = '"+body.email+"'";
+    conn.query(sql,function(err,result){
+        if(err){
+            console.log(err);
+            res.status(500).send('서버에러');
+        }else{  
+            if(result[0].email === body.email && result[0].pw === body.password){
+                const token = tokenService.generateToken({email:result[0].email});
+                res.status(200).send(token);
+            }else{
+            
+                res.status(401).send('로그인 실패!');
+            }
+        }
+        
+    });
 
-    const token = tokenService.generateToken({data2:'mannnnnnnnnn'});
-    console.log(token);
-    res.status(200).send(token);
+    
+    
 });
 
 module.exports = router;

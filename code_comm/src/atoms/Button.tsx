@@ -6,7 +6,7 @@ interface buttonProps {
     height:string,
     backgroundColor:string,
     color:string,
-    onClick?:()=>void
+    onClick?:(e:any)=>void
 }
 
 const Button:React.FC<buttonProps> = ({label , width,height,backgroundColor,color,onClick})=> {

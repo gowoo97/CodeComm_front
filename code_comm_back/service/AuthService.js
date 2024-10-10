@@ -1,5 +1,4 @@
 
-const memberRepository = require("../repository/memberRepository");
 const {v4: uuidv4} = require("uuid");
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
